@@ -12,21 +12,23 @@ namespace MyFormA
     {
         public Start_Form()
         {
-
-            this.Height = 750;
-            this.Width = 750;
+            
+            this.Height = 1200;
+            this.Width = 1250;
             this.BackColor=Color.Orange;
 
             Button st_btn = new Button
             {
-                Text = "8k saalid",
+                Text = "Suur Saal",
+                
                 Location = new System.Drawing.Point(10, 10)
             };
             st_btn.Click += St_btn_Click;
             this.Controls.Add(st_btn);
             Button st_btn2 = new Button()
             {
-                Text = "4k saal",
+                Text = "Väike Saal",
+                
                 Location = new System.Drawing.Point(10, 50)
                 
             };
@@ -63,35 +65,39 @@ namespace MyFormA
         {
             filminimetus = Film();
         }
-
+        string filminimetus2;
         private void Film_Click1(object sender, EventArgs e)
         {
-            filminimetus = Film2();
+            filminimetus2 = Film2();
         }
         private string Film()
         {
+            
             filminimetus = "Titanik";
             return filminimetus;
 
         }
         private string Film2()
-        {
-            filminimetus = "Venom";
-            return filminimetus;
+        {   
+            
+            filminimetus2 = "Venom";
+            return filminimetus2;
 
         }
         private void St_btn_Click1(object sender, EventArgs e)
         {
-
-            FormAgain uus_aken = new FormAgain(8, 5,filminimetus);
+                FormAgain uus_aken = new FormAgain(5, 3, filminimetus);
+                uus_aken.StartPosition = FormStartPosition.CenterScreen;
+                uus_aken.ShowDialog();
             
-
-            uus_aken.StartPosition = FormStartPosition.CenterScreen;
-            uus_aken.ShowDialog();
         }
         private void St_btn_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Vabandage saalid ei töötovad ,saalite lahti alustamine on 20.05.2023");
+            FormAgain2 uus_aken = new FormAgain2(8, 5, filminimetus2);
+
+
+            uus_aken.StartPosition = FormStartPosition.CenterScreen;
+            uus_aken.ShowDialog();
         }
     }
 }

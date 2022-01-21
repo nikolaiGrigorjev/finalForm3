@@ -12,23 +12,21 @@ using System.Windows.Forms;
 
 namespace MyFormA
 {
-    public partial class FormAgain : Form
+    public partial class FormAgain2 : Form
     {
         Label message = new Label();
         Button[] btn = new Button[4];
         string[] texts = new string[5];
         TableLayoutPanel tlp = new TableLayoutPanel();
         Button btn_tabel;
-        
-        static List <Pilet> piletid;
+        static List<Pilet> piletid;
         int k, r;
-
+        string film;
         
-        string film2;
         static string[] read_kohad;
-        public FormAgain()
+        public FormAgain2()
         { }
-        public FormAgain(string title, string body, string button1, string button2, string button3, string button4)
+        public FormAgain2(string title, string body, string button1, string button2, string button3, string button4)
         {
             texts[0] = button1;
             texts[1] = button2;
@@ -36,7 +34,7 @@ namespace MyFormA
             texts[3] = button4;
 
 
-           
+
             this.ClientSize = new System.Drawing.Size(100, 100);
             this.Text = title;
             int x = 10;
@@ -56,7 +54,7 @@ namespace MyFormA
             message.Text = body;
             this.Controls.Add(message);
         }
-        public FormAgain(string title, string body, string button1, string button2)
+        public FormAgain2(string title, string body, string button1, string button2)
         {
             texts[0] = button1;
             texts[1] = button2;
@@ -84,7 +82,7 @@ namespace MyFormA
         {
             try
             {
-                StreamReader f = new StreamReader(@"..\..\Piletid\vaikeSaal.txt");
+                StreamReader f = new StreamReader(@"..\..\Piletid\suurSaali.txt");
                 read_kohad = f.ReadToEnd().Split(';');
                 f.Close();
             }
@@ -106,7 +104,7 @@ namespace MyFormA
             btn_tabel.Click += new EventHandler(Pileti_valik);
             return btn_tabel;
         }
-        public FormAgain(int read, int kohad, string film2)
+        public FormAgain2(int read, int kohad, string film)
         {
             this.tlp.ColumnCount = kohad;
             this.tlp.RowCount = read;
@@ -115,7 +113,7 @@ namespace MyFormA
             int i, j;
             read_kohad = Ostetud_piletid();
             piletid = new List<Pilet> { };
-            this.Text = film2;
+            this.Text = film;
             for (i = 0; i < read; i++)
             {
                 this.tlp.RowStyles.Add(new RowStyle(SizeType.Percent));
@@ -158,9 +156,6 @@ namespace MyFormA
             }
 
             //message.Attachments.Add(new Attachment("file.pdf"));
-
-
-
             string email = "programmeeriminetthk@gmail.com";
             string password = "2.kuursus tarpv20";
             SmtpClient client = new SmtpClient("smtp.gmail.com");
@@ -201,7 +196,7 @@ namespace MyFormA
                 {
                     Pilet pilet = new Pilet(rida, koht);
                     piletid.Add(pilet);
-                    StreamWriter ost = new StreamWriter(@"..\..\Piletid\vaikeSaal.txt", true);
+                    StreamWriter ost = new StreamWriter(@"..\..\Piletid\suurSaali.txt", true);
                     ost.Write(btn_click.Name.ToString() + ';');
                     ost.Close();
 
